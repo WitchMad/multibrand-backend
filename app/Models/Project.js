@@ -4,6 +4,15 @@
 const Model = use('Model')
 
 class Project extends Model {
+  static boot () {
+    super.boot()
+
+    this.addHook('afterCreate', 'ProjectHook.sendWs')
+  }
+
+  team () {
+    return this.belongsTo('App/Models/Team')
+  }
 }
 
 module.exports = Project
